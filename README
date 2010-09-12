@@ -1,13 +1,13 @@
 FilteredRelation
 ================
 
-Introduction goes here.
-
+Making dynamic filters easier
 
 Example
 =======
 
-Example goes here.
+posts = Post.filtered_relation(:comments => true).where(:user_id => 4).limit(3).order("id ASC")    
 
-
-Copyright (c) 2010 [name of plugin creator], released under the MIT license
+posts.each do |post|  
+	# Do something here...  
+end  
