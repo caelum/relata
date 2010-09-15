@@ -1,0 +1,13 @@
+**/*/db/schema.rb
+**/*/log/*
+**/*/tmp/*
+*~
+*.sqlite3
+*.swp
+*.swo
+.rvmrc
+.bundle
+.bundle/*
+rdoc/*
+log
+Gemfile.lock
