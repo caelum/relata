@@ -5,7 +5,7 @@ class FilteredRelationTest < ActiveSupport::TestCase
     create_posts
   end
   
-  test "filtro em branco devolve todos os posts" do
+  test "given no values to filtered_relation, gives us all records" do
      assert_equal Post.all, Post.filtered_relation({}).all
    end
    
