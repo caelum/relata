@@ -1,6 +1,4 @@
 module FilteredRelation
-	class Railtie < Rails::Railtie
-		railtie_name :filtered_relation
 
 		class ::ActiveRecord::Base
 
@@ -12,17 +10,18 @@ module FilteredRelation
 				end
 				relation
 			end
-
-			def self.filter_by_comments(value, relation) 
-				if value 
-					relation.preload(:comments).select("posts.*, COUNT(comments.id) AS comment_count").from("posts, comments").group("posts.id").having("comment_count > 0") 
-				else 
-					relation 
-				end 
-			end
-
+			
+	
 			class << self
-
+  		
+    		def filter_by_comments(value, relation) 
+  				if value 
+  					relation.preload(:comments).select("posts.*, COUNT(comments.id) AS comment_count").from("posts, comments").group("posts.id").having("comment_count > 0") 
+  				else 
+  					relation 
+  				end 
+  			end
+      
 				def filter_by_content(value, relation) 
 					relation.where(:content => value) 
 				end
@@ -34,5 +33,4 @@ module FilteredRelation
 			end  
 		end
 
-	end
 end
