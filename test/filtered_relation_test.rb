@@ -6,26 +6,26 @@ class FilteredRelationTest < ActiveSupport::TestCase
   end
   
   test "filtro em branco devolve todos os posts" do
-    assert_equal Post.all, Post.filtered_relation({}).all
-  end
+     assert_equal Post.all, Post.filtered_relation({}).all
+   end
+   
+   test "given a content and comment filter, gives us filtered records" do 
+     @base.update_attributes(:content => "picture", :comments => [Comment.create]) 
+     assert_equal @base, Post.filtered_relation(:content => "picture", :comments => true).first 
+   end
+   
+   test "given a date and comment filter, gives us filtered records" do 
+     @base.update_attributes(:published_at => 2.years.ago, :comments => [Comment.create]) 
+     assert_equal @base, Post.filtered_relation(:published_at => true, :comments => true).first 
+   end 
   
-  test "given a content and comment filter, gives us filtered records" do 
-    @base.update_attributes(:content => "picture", :comments => [Comment.create]) 
-    assert_equal @base, Post.filtered_relation(:content => "picture", :comments => true).first 
-  end
-  
-  test "given a date and comment filter, gives us filtered records" do 
-    @base.update_attributes(:published_at => 2.years.ago, :comments => [Comment.create]) 
-    assert_equal @base, Post.filtered_relation(:published_at => true, :comments => true).first 
-  end 
-
-  test "given a date and content filter, gives us filtered records" do 
-    @base.update_attribute(:published_at, 2.years.ago) 
-    @base.update_attribute(:content, "picture") 
-    record = Post.filtered_relation(:published_at => true, :content => "picture").first 
-    
-    assert_equal @base, record 
-  end
+   test "given a date and content filter, gives us filtered records" do 
+     @base.update_attribute(:published_at, 2.years.ago) 
+     @base.update_attribute(:content, "picture") 
+     record = Post.filtered_relation(:published_at => true, :content => "picture").first 
+     
+     assert_equal @base, record 
+   end
   
   def create_posts
     valid_attributes = {
