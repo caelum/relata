@@ -11,3 +11,22 @@ posts = Post.filtered_relation(:comments => true).where(:user_id => 4).limit(3).
 posts.each do |post|  
 	# Do something here...  
 end  
+
+
+How can I contribute?
+=====================
+
+There is an rails_app directory inside test folder. inside this folder you can generate the test_database:
+
+rake db:create
+rake db:migrate
+rake db:test:clone
+
+After that, go to the root directory and run the tests:
+
+rake test
+
+Now, you can add your new filtered_relation_condition tested and send a request.
+
+
+
