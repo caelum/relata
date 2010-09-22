@@ -1,3 +1,3 @@
 module FilteredRelation
-  require 'filtered_relation/railtie' if defined?(Rails)
+  require 'filtered_relation/filter'
 end

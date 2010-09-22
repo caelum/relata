@@ -61,12 +61,12 @@ class FilteredRelationTest < ActiveSupport::TestCase
    
    test "given a content and comment filter, gives us filtered records" do 
      @base.update_attributes(:content => "picture", :comments => [Comment.create]) 
-     assert_equal @base, Post.filtered_relation(:content => "picture", :comments => true).first 
+     assert_equal @base, Post.filtered_relation(:content => "picture").related_to(:comments => true).first 
    end
    
    test "given a date and comment filter, gives us filtered records" do 
      @base.update_attributes(:published_at => 2.years.ago, :comments => [Comment.create]) 
-     assert_equal @base, Post.filtered_relation(:published_at => true, :comments => true).first 
+     assert_equal @base, Post.filtered_relation(:published_at => true).related_to(:comments => true).first 
    end 
   
    test "given a date and content filter, gives us filtered records" do 
