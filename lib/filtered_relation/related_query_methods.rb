@@ -1,7 +1,10 @@
 module RelatedQueryMethods
+  
+  def self.included(base)
+    base.extend ClassMethods
+  end
 
-  class ::ActiveRecord::Base
-    class << self
+  module ClassMethods
 
       def filter_by_related(facet, value, relation) 
         if value 
@@ -27,7 +30,6 @@ module RelatedQueryMethods
         value ? relation.where("published_at < ?", 1.month.ago) : relation 
       end
 
-    end  
   end
     
 end
