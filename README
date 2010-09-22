@@ -6,8 +6,16 @@ Making dynamic filters easier
 Example
 =======
 
+1)
 posts = Post.filtered_relation(:comments => true).where(:user_id => 4).limit(3).order("id ASC")    
 
 posts.each do |post|  
-	# Do something here...  
+	# records
 end  
+
+2)
+Usually you have to create massive querys to deal with complex relations, like:
+   select posts.*, COUNT(comments.id) AS comment_count from posts, comments group posts.id having comment_count > 0
+
+Insted just use:
+Post.filtered_relation(:published_at => true).related_to(:comments => true).where(:user_id => 4).first
