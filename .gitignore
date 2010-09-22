@@ -11,3 +11,4 @@
 rdoc/*
 log
 Gemfile.lock
+pkg 
