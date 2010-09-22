@@ -29,7 +29,7 @@ PKG_FILES = FileList[ '[a-zA-Z]*', 'generators/**/*', 'lib/**/*', 'rails/**/*', 
 
 spec = Gem::Specification.new do |s|
    s.name = "filtered_relation"  
-   s.version = "0.0.1"  
+   s.version = "0.0.2"  
    s.author = "Anderson Leite"  
    s.email = "andersonlfl@gmail.com"  
    s.homepage = "http://github.com/andersonleite/filtered_relation"  
