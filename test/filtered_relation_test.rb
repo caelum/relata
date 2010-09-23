@@ -76,6 +76,10 @@ class FilteredRelationTest < ActiveSupport::TestCase
      
      assert_equal @base, record 
    end
+   
+   test "given two dates, gives us filtered records between this date" do 
+     assert_equal @base, Post.date_between(:before => 1.year.ago, :after => Time.now).first 
+   end 
   
   def create_posts
     valid_attributes = {

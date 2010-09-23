@@ -29,6 +29,12 @@ module RelatedQueryMethods
       def filter_by_published_at(value, relation) 
         value ? relation.where("published_at < ?", 1.month.ago) : relation 
       end
+      
+      def filter_by_date_between(params, relation) 
+        relation.where("published_at < ?", params[:before])
+        relation.where("published_at > ?", params[:after])
+        relation
+      end
 
   end
     

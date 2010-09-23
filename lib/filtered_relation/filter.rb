@@ -23,6 +23,13 @@ module FilteredRelation
       relation
     end
 
+    def self.date_between(params) 
+      relation = scoped 
+      relation = send("filter_by_date_between", params, relation) 
+      relation
+    end
+
+
   end
 
 end
