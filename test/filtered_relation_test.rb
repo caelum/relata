@@ -11,7 +11,6 @@ def setup_db
       ActiveRecord::Base.connection.drop_table(table)
     end
     
-    
   ActiveRecord::Schema.define(:version => 1) do
 
      create_table :posts do |t|
