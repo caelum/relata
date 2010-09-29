@@ -11,7 +11,7 @@ class DSLTest < ActiveSupport::TestCase
   end
   
   test "given an attribute and expectation, gives the results" do
-    puts Post.where(:body).class
+    Post.where(:body).class
     posts = Post.where(:body).like?("%caelum%").all
     assert_equal @caelum, posts[0]
     assert_equal 1, posts.size
