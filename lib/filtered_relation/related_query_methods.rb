@@ -6,17 +6,20 @@ module RelatedQueryMethods
 
   module ClassMethods
 
-      def filter_by_related(facet, value, relation) 
-        if value 
-          relation.preload(facet).select("posts.*, COUNT(#{facet}.id) AS comment_count").from("posts, #{facet}").group("posts.id").having("comment_count > 0") 
+      def filter_by_has_many(facet, value, relation) 
+        
+        table_name = self.table_name
+
+        if !value.empty?
+          relation.preload(facet).select("#{table_name}.*, COUNT(#{facet}.id) AS count").from("#{table_name}, #{facet}").where("#{table_name}.id = #{facet}.post_id").group("#{table_name}.id").having("count > 0") 
         else 
           relation 
         end 
       end
 
-      def filter_by_comments(value, relation) 
-        if !value.empty?
-          relation.preload(:comments).select("posts.*, COUNT(comments.id) AS comment_count").from("posts, comments").where("posts.id = comments.post_id").group("posts.id").having("comment_count > 0") 
+      def filter_by_related(facet, value, relation) 
+        if value 
+          relation.preload(facet).select("posts.*, COUNT(#{facet}.id) AS comment_count").from("posts, #{facet}").group("posts.id").having("comment_count > 0") 
         else 
           relation 
         end 

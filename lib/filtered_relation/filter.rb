@@ -9,8 +9,13 @@ module FilteredRelation
       relation = scoped 
 
       params.each do |facet, value| 
-        relation = send("filter_by_#{facet}", value, relation) 
+        if self.reflect_on_association facet.to_sym
+          relation = send("filter_by_has_many", facet, value, relation)           
+        else  
+          relation = send("filter_by_#{facet}", value, relation)         
+        end
       end
+
       relation
     end
 

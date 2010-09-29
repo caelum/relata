@@ -57,6 +57,11 @@ class FilteredRelationTest < ActiveSupport::TestCase
   test "given no values to filtered_relation, gives us all records" do
      assert_equal Post.all, Post.filtered_relation({}).all
    end
+
+   test "given a content and comment filter, gives us filtered records - generic" do 
+     @base.update_attributes(:content => "picture", :comments => [Comment.create]) 
+     assert_equal @base, Post.filtered_relation(:content => "picture", :comments => 'true').first 
+   end
    
    test "given a content and comment filter, gives us filtered records" do 
      @base.update_attributes(:content => "picture", :comments => [Comment.create]) 
