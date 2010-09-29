@@ -15,15 +15,17 @@ module RelatedQueryMethods
       end
 
       def filter_by_comments(value, relation) 
-        if value 
-          relation.preload(:comments).select("posts.*, COUNT(comments.id) AS comment_count").from("posts, comments").group("posts.id").having("comment_count > 0") 
+        p "comments => #{value.to_s} \o/"
+        
+        if !value.empty?
+          relation.preload(:comments).select("posts.*, COUNT(comments.id) AS comment_count").from("posts, comments").where("posts.id = comments.post_id").group("posts.id").having("comment_count > 0") 
         else 
           relation 
         end 
       end
 
       def filter_by_content(value, relation) 
-        relation.where(:content => value) 
+        !value.empty? ? relation.where(:content => value) : relation
       end
 
       def filter_by_published_at(value, relation) 
