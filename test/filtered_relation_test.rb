@@ -1,6 +1,5 @@
 require File.expand_path(File.dirname(__FILE__)) + "/test_helper"
 
-require 'active_record'
 require 'filtered_relation/filter'
 require 'schema'
 
