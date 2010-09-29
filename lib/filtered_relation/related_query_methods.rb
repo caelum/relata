@@ -25,8 +25,8 @@ module RelatedQueryMethods
         end 
       end
 
-      def filter_by_content(value, relation) 
-        !value.empty? ? relation.where(:content => value) : relation
+      def filter_by_exact(facet, value, relation) 
+        !value.empty? ? relation.where(facet => value) : relation
       end
 
       def filter_by_published_at(value, relation) 

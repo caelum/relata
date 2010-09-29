@@ -84,6 +84,17 @@ class FilteredRelationTest < ActiveSupport::TestCase
    test "given two dates, gives us filtered records between this date" do 
      assert_equal @base, Post.date_between(:before => 1.year.ago, :after => Time.now).first 
    end 
+   
+   test "return a post with same title" do 
+     @base.update_attributes(:title => "Post Title") 
+     assert_equal @base, Post.filtered_relation(:title => "Post Title").first 
+   end
+   
+   test "return a post with same title and body" do 
+     @base.update_attributes(:title => "Post Title", :body => "Ruby") 
+     assert_equal @base, Post.filtered_relation(:title => "Post Title", :body => "Ruby").first 
+   end
+   
   
   def create_posts
     valid_attributes = {

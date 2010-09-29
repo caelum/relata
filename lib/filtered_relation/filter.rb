@@ -8,10 +8,16 @@ module FilteredRelation
     def self.filtered_relation(params) 
       relation = scoped 
 
+      columns = self.columns.map do |c|
+         c.name if [:string, :text].include? c.type
+      end  
+                  
       params.each do |facet, value| 
         if self.reflect_on_association facet.to_sym
           relation = send("filter_by_has_many", facet, value, relation)           
-        else  
+        elsif columns.include? facet.to_s
+          relation = send("filter_by_exact", facet, value, relation)
+        else    
           relation = send("filter_by_#{facet}", value, relation)         
         end
       end
