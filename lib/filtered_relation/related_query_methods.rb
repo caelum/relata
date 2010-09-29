@@ -15,8 +15,6 @@ module RelatedQueryMethods
       end
 
       def filter_by_comments(value, relation) 
-        p "comments => #{value.to_s} \o/"
-        
         if !value.empty?
           relation.preload(:comments).select("posts.*, COUNT(comments.id) AS comment_count").from("posts, comments").where("posts.id = comments.post_id").group("posts.id").having("comment_count > 0") 
         else 
