@@ -3,19 +3,6 @@ require File.expand_path(File.dirname(__FILE__)) + "/test_helper"
 require 'filtered_relation/filter'
 require 'schema'
 
-class Post < ActiveRecord::Base
-  belongs_to :user
-  has_many :comments
-end
-
-class User < ActiveRecord::Base
-  has_many :posts
-end
-
-class Comment < ActiveRecord::Base
-  belongs_to :post
-end
-
 class FilteredRelationTest < ActiveSupport::TestCase
   setup do
     setup_db
