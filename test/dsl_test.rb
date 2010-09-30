@@ -8,6 +8,7 @@ class DSLTest < ActiveSupport::TestCase
     setup_db
     @caelum = Post.create :body => "CaelumObjects training and inovation"
     @guilherme = Post.create :body => "Guilherme Silveira"
+    @base = Post.create
   end
   
   test "given an attribute and expectation, gives the results" do
@@ -20,6 +21,13 @@ class DSLTest < ActiveSupport::TestCase
   #   posts = Post.where(:body).length.lesser_than(22).all
   #   assert_equal @guilherme, posts[0]
   # end
+  
+  test "exists posts with comments" do
+    @base.update_attributes(:comments => [Comment.create]) 
+    posts = Post.where(:comments).count.exists?
+    assert_equal @base, posts[0]
+    assert_equal 1, posts.size
+  end
   
   def custom
 

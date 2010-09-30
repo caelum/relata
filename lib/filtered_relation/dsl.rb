@@ -62,9 +62,9 @@ module MyConstraints
 end
 
 module MyRelation
-  def using(record, x)
+  def using(record, field)
     @record = record
-    @current_field = x
+    @current_field = field
     self
   end
   
@@ -99,9 +99,9 @@ end
 class ActiveRecord::Relation
   def where(*args, &block)
     if args.size==1 && args[0].is_a?(Symbol)
-      other = scoped
-      other.extend MyRelation
-      other.using(self, args[0])
+      relation = scoped
+      relation.extend MyRelation
+      relation.using(self, args[0])
     else
       super(*args, &block)
     end
