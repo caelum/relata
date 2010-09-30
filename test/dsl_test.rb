@@ -28,6 +28,14 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal @base, posts[0]
     assert_equal 1, posts.size
   end
+
+  test "exists posts with more than 2 comments" do
+    @base.update_attributes(:comments => [Comment.create, Comment.create, Comment.create]) 
+    posts = Post.where(:comments).count.gt(2)
+    assert_equal @base, posts.first
+    assert_equal 3, posts.first.comments.size
+  end
+
   
   def custom
 
