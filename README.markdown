@@ -25,4 +25,12 @@ Create more advanced relations.
 
 ## DSL API ##
 
+	Post.where(:body).like?("%caelum%")
+
+	Post.where(:comments).count.exists?
+
+	Post.where(:comments).count.gt(2)
+
+	Post.where(:comments).count.lt(2)
+
  	Post.where(:comments).description.like?("%dsl test%")
