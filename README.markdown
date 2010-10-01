@@ -8,11 +8,8 @@ Create dynamic filters with just onde method.
 	
 	<% form_tag :action => 'filter' do %>
 	  	Title: <%= text_field_tag 'post[title]' %><br />
-	  	Body: <%= text_field_tag 'post[body]' %><br />
-	  	Content: <%= text_field_tag 'post[content]' %><br />
 	  	Only with Comments? 
-	        <%= select("post", "comments",   options_for_select({ "false" => "", "true" => "true" })) %>
-	%>
+	        <%= select("post", "comments",   options_for_select({ "false" => "", "true" => "true" })) %> %>
 
 	def filter
 	  @posts = Post.filtered_relation(params[:post]).all
