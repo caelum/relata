@@ -1,99 +1,38 @@
-module MyConditions
-  def gt(value)
-    add_filter("> #{value}")
-  end
-  def greater_than(value)
-    gt(value)
-  end
-
-  def lt(value)
-    add_filter("< #{value}")
-  end
-  def lesser_than(value)
-    lt value
-  end
-
-  def exists?
-    add_filter("> 0")
-  end
-  
-end
-
-module MyConstraints
-  
-  def length
-    @relation_search = LengthManager
-    self
-  end
-  
-  class LengthManager
-    def self.condition(field)
-      "len(field)"
-    end
-  end
-
-  def count
-    @relation_search = CountManager
-    self
-  end
-
-  def like?(value)
-    where("#{@current_field} like ?", [value])
-  end
-  
-  class RangeManager
-    def self.select_fields(facet)
-      "COUNT(#{facet}.id) AS count"
-    end
-    def self.having(expectation)
-      "count #{expectation}"
-    end
-  end
-
-  class CountManager
-    def self.select_fields(facet)
-      "COUNT(#{facet}.id) AS count"
-    end
-    def self.having(expectation)
-      "count #{expectation}"
-    end
-  end
-
-end
+require 'filtered_relation/dsl/conditions'
+require 'filtered_relation/dsl/constraints'
+require 'filtered_relation/dsl/querys/multiple'
+require 'filtered_relation/dsl/querys/simple'
 
 module MyRelation
-  def using(record, field)
+  include Conditions
+  include Constraints
+  
+  def using(record, field)    
     @record = record
     @current_field = field
+    @start_field = field
+    @select_fields = ["#{table_name}.*"]
+    @groups = []
+    
+    if relates_to_many? field
+      self.extend MultipleQuery
+    else
+      self.extend SimpleQuery
+    end
+    
     self
   end
-  
-  include MyConditions
-  include MyConstraints
+    
+  def description
+    @current_field = "#{@current_field}.description"
+    self
+  end
 
   private
   def relates_to_many?(name)
-    facet = @current_field
-    if @record.reflect_on_association facet.to_sym
-      true
-    else
-      false
-    end
+    @record.reflect_on_association @current_field.to_sym
   end
 
-  def add_filter(expectation)
-    table_name = self.table_name
-    if relates_to_many?(@current_field)
-      facet = @current_field
-      fields = @relation_search.select_fields(facet)
-      fields = "#{table_name}.*, #{fields}"
-      having = @relation_search.having(expectation)
-      preload(@current_field).select(fields).from("#{table_name}, #{facet}").where("#{table_name}.id = #{facet}.post_id").group("#{table_name}.id").having(having) 
-    else
-      where("#{@relation_search.condition(@current_field.to_s)} #{expectation}")
-    end
-    # remember to delegate to super
-  end
 end
 
 class ActiveRecord::Relation
