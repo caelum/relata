@@ -4,7 +4,7 @@ Making dynamic filters easier with a nice ActiveRecord DSL.
 
 ## Filter Example ##
 
-	Create dynamic filters with just onde method.
+Create dynamic filters with just onde method.
 	
 	<% form_tag :action => 'filter' do %>
 	  	Title: <%= text_field_tag 'post[title]' %><br />
@@ -18,7 +18,7 @@ Making dynamic filters easier with a nice ActiveRecord DSL.
 	  @posts = Post.filtered_relation(params[:post]).all
 	end
 
-	Create more advanced relations.
+Create more advanced relations.
 	
 	posts = Post.filtered_relation(:comments => true).where(:user_id => 4).limit(3).order("id ASC")    
 
