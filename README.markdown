@@ -1,5 +1,4 @@
 #FilteredRelation#
-================
 
 Making dynamic filters easier with a nice ActiveRecord DSL. 
 
