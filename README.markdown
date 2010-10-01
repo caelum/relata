@@ -33,4 +33,4 @@ Create more advanced relations.
 
 	Post.where(:comments).count.lt(2)
 
- 	Post.where(:comments).description.like?("%dsl test%")
+ 	Post.where(:comments).description.like?("%filtered%")
