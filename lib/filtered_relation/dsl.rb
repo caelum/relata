@@ -3,7 +3,12 @@ require 'filtered_relation/dsl/constraints'
 require 'filtered_relation/dsl/querys/multiple'
 require 'filtered_relation/dsl/querys/simple'
 
-module MyRelation
+module FilteredRelation
+  module Dsl
+  end
+end
+
+module FilteredRelation::Dsl::CustomRelation
   include Conditions
   include Constraints
   
@@ -35,14 +40,20 @@ module MyRelation
 
 end
 
-class ActiveRecord::Relation
+module FilteredRelation::Dsl::Relation
+
+  # extended where clause that allows symbol lookup
   def where(*args, &block)
     if args.size==1 && args[0].is_a?(Symbol)
       relation = scoped
-      relation.extend MyRelation
+      relation.extend FilteredRelation::Dsl::CustomRelation
       relation.using(self, args[0])
     else
       super(*args, &block)
     end
   end
+end
+
+class ActiveRecord::Relation
+  include FilteredRelation::Dsl::Relation
 end
