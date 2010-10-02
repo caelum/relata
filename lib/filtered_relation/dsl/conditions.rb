@@ -1,3 +1,5 @@
+# A custom set of conditions that can be applied
+# to a query
 module Conditions
   def ge(value)
     add_filter(">= #{value}")
