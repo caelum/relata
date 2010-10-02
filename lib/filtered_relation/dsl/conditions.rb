@@ -25,6 +25,7 @@ module Conditions
     lt value
   end
 
+  # whether this relation has at least one element.
   def exists?
     if @relation_search.nil?
       count.exists?
