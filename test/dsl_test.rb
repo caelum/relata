@@ -30,6 +30,13 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal 1, posts.size
   end
   
+  test "exists posts with comments can be shortcuted with exists?" do
+    @base.update_attributes(:comments => [Comment.create]) 
+    posts = Post.where(:comments).exists?
+    assert_equal @base, posts[0]
+    assert_equal 1, posts.size
+  end
+  
   test "exists posts with more than 2 comments" do
     @base.update_attributes(:comments => [Comment.create, Comment.create, Comment.create]) 
     posts = Post.where(:comments).count.gt(2)

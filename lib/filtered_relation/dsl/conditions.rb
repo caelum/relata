@@ -26,6 +26,10 @@ module Conditions
   end
 
   def exists?
-    add_filter("> 0")
+    if @relation_search.nil?
+      count.exists?
+    else
+      add_filter("> 0")
+    end
   end  
 end
