@@ -41,11 +41,30 @@ module FilteredRelation::Dsl::CustomRelation
 
 end
 
+class FilteredRelation::Dsl::MissedBuilder
+  
+  def initialize(rel)
+    @rel = rel
+  end
+  
+  def >=(value)
+    @rel.where(@what).count.ge(value)
+  end
+  
+  def method_missing(symbol, *args)
+    @what = symbol
+    self
+  end
+  
+end
+
 module FilteredRelation::Dsl::Relation
 
   # extended where clause that allows symbol lookup
   def where(*args, &block)
-    if args.size==1 && args[0].is_a?(Symbol)
+    if args.size==0 && block
+      FilteredRelation::Dsl::MissedBuilder.new(self).instance_eval &block
+    elsif args.size==1 && args[0].is_a?(Symbol)
       relation = scoped
       relation.extend FilteredRelation::Dsl::CustomRelation
       relation.using(self, args[0])

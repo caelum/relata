@@ -67,12 +67,19 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal @base, posts[0]
     assert_equal 1, posts.size
   end
-  
-  
+
+  test "exists posts using strict extended methods" do
+    @base.update_attributes(:comments => [Comment.create, Comment.create]) 
+    @second.update_attributes(:comments => [Comment.create, Comment.create, Comment.create])
+    posts = Post.where { comments >= 2 }
+    assert_equal @base, posts[0]
+    assert_equal @second, posts[1]
+    assert_equal 2, posts.size
+  end
+   
   def pending
-     # posts = Post.filtered_relation.where(:comments).exists?
      # posts = posts.and(:authors).count.lt(3)
-     # Post.filtered_relation(:comments_count => >2)
+     # Post.where(:comments_count => >2)
      # Post.where("name.size > 2")
      # r = Post.where(:body).size.gt(2)
      # r = Post.where(:body).like("%a%")
