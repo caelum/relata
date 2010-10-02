@@ -19,7 +19,7 @@ module FilteredRelation::Dsl::CustomRelation
     @select_fields = ["#{table_name}.*"]
     @groups = []
     
-    if relates_to_many? field
+    if relates_to_many?
       self.extend MultipleQuery
     else
       self.extend SimpleQuery
@@ -34,7 +34,8 @@ module FilteredRelation::Dsl::CustomRelation
   end
 
   private
-  def relates_to_many?(name)
+  
+  def relates_to_many?
     @record.reflect_on_association @current_field.to_sym
   end
 
