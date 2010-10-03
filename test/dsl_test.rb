@@ -87,10 +87,10 @@ class DSLTest < ActiveSupport::TestCase
   end
    
   def pending
+    # posts = Post.where { comments.description.like?("%dsl test%") }
+
      # posts = posts.and(:authors).count.lt(3)
-     # Post.where("name.size > 2")
      # r = Post.where(:body).size.gt(2)
-     # r = Post.where(:body).like("%a%")
      # r = Post.where(:comments).description.like("%a%")
      # r = Post.where(:comments).name.gt(2)
      # Author.where(:posts).comments.count.gt(2)
