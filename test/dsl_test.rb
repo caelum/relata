@@ -85,8 +85,21 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal @guilherme, posts[1]
     assert_equal 2, posts.size
   end
-   
+
+  test "exists posts using range expectations" do
+    @caelum.update_attributes :published_at => 1.year.ago
+    
+    posts = Post.where { published_at.between(2.years.ago, 6.months.ago) }
+    puts "Result is"
+    puts posts
+    assert_equal @caelum, posts[0]
+    assert_equal 1, posts.size
+  end
+
   def pending
+    
+    # support .all, .first, and so on
+    
     # posts = Post.where { comments.description.like?("%dsl test%") }
 
      # posts = posts.and(:authors).count.lt(3)

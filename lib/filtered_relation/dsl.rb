@@ -41,33 +41,45 @@ module FilteredRelation::Dsl::CustomRelation
 
 end
 
+class FilteredRelation::Dsl::FieldSearch
+  
+  def initialize(rel, field)
+    @rel = rel
+    puts "building a query on top of #{field}"
+    @field = field
+  end
+
+  def >=(value)
+    @rel.where(@field).count.ge(value)
+  end
+  
+  def like?(value)
+    puts "ha #{@field}"
+    @rel.where(@field).like?(value)
+  end
+  
+  def exists?
+    @rel.where(@field).exists?
+  end
+  
+  def between(first, second)
+    puts "playing with #{@field}"
+    @rel.where(@field).between(first, second)
+  end
+
+end
+
 class FilteredRelation::Dsl::MissedBuilder
   
   def initialize(rel)
     @rel = rel
   end
   
-  def >=(value)
-    @rel.where(@what).count.ge(value)
-  end
-  
-  def like?(value)
-    puts "ha #{@what}"
-    @rel.where(@what).like?(value)
-  end
-  
-  def exists?
-    @rel.where(@what).exists?
-  end
-  
-  # TODO separate constraints from parameters:
-  # TODO in this one, parameters are method_missing
-  # TODO in another one, contraints are method_missing
-  # TODO this way its easier to implement all of them at once
-  
-  def method_missing(symbol, *args)
-    @what = symbol
-    self
+  def method_missing(field, *args)
+    if args.size!=0
+      raise "Trying to setup a parameter with args: #{field} and #{args}"
+    end
+    FilteredRelation::Dsl::FieldSearch.new(@rel, field)
   end
   
 end

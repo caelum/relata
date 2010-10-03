@@ -6,7 +6,7 @@ module Constraints
   end
   
   class LengthManager
-    def self.condition(field)
+    def self.condition(field, *args)
       "len(field)"
     end
   end
@@ -22,6 +22,25 @@ module Constraints
     query.where("#{@current_field} like ?", [value])
   end
   
+  def between(first, second)
+    @relation_search = SimpleRangeCondition
+    self
+    # query.where("#{@current_field} like ?", [value])
+    # add_filter("> #{first}").add_filter("< #{second}")
+  end
+  
+  class SimpleCondition
+    def self.condition(field, *args)
+      "#{field}"
+    end
+  end
+
+  class SimpleRangeCondition
+    def self.condition(field, *args)
+      "#{field} > #{args[0]} AND #{field} < #{args[1]}"
+    end
+  end
+
   class RangeManager
     def self.select_fields(facet)
       "COUNT(#{facet}.id) AS count"
