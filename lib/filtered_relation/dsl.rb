@@ -51,6 +51,11 @@ class FilteredRelation::Dsl::MissedBuilder
     @rel.where(@what).count.ge(value)
   end
   
+  # TODO separate constraints from parameters:
+  # TODO in this one, parameters are method_missing
+  # TODO in another one, contraints are method_missing
+  # TODO this way its easier to implement all of them at once
+  
   def method_missing(symbol, *args)
     @what = symbol
     self
@@ -63,7 +68,7 @@ module FilteredRelation::Dsl::Relation
   # extended where clause that allows symbol lookup
   def where(*args, &block)
     if args.size==0 && block
-      FilteredRelation::Dsl::MissedBuilder.new(self).instance_eval &block
+      FilteredRelation::Dsl::MissedBuilder.new(self).instance_eval(&block)
     elsif args.size==1 && args[0].is_a?(Symbol)
       relation = scoped
       relation.extend FilteredRelation::Dsl::CustomRelation
