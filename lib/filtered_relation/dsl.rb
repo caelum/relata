@@ -51,6 +51,15 @@ class FilteredRelation::Dsl::MissedBuilder
     @rel.where(@what).count.ge(value)
   end
   
+  def like?(value)
+    puts "ha #{@what}"
+    @rel.where(@what).like?(value)
+  end
+  
+  def exists?
+    @rel.where(@what).exists?
+  end
+  
   # TODO separate constraints from parameters:
   # TODO in this one, parameters are method_missing
   # TODO in another one, contraints are method_missing

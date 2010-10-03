@@ -14,6 +14,10 @@ class DSLTest < ActiveSupport::TestCase
     posts = Post.where(:body).like?("%caelum%").all
     assert_equal @caelum, posts[0]
     assert_equal 1, posts.size
+
+    posts = Post.where { body.like? "%caelum%" }
+    assert_equal @caelum, posts[0]
+    assert_equal 1, posts.size
   end
   
   # test "given an attribute and constraint expectation, gives the results" do
@@ -31,6 +35,10 @@ class DSLTest < ActiveSupport::TestCase
   test "exists posts with comments can be shortcuted with exists?" do
     @caelum.update_attributes(:comments => [Comment.create]) 
     posts = Post.where(:comments).exists?
+    assert_equal @caelum, posts[0]
+    assert_equal 1, posts.size
+
+    posts = Post.where { comments.exists? }
     assert_equal @caelum, posts[0]
     assert_equal 1, posts.size
   end
@@ -52,6 +60,7 @@ class DSLTest < ActiveSupport::TestCase
   test "exists posts with more than or equals 2 comments" do
     @caelum.update_attributes(:comments => [Comment.create, Comment.create]) 
     @guilherme.update_attributes(:comments => [Comment.create, Comment.create, Comment.create])
+
     posts = Post.where(:comments).count.ge(2)
     assert_equal @caelum, posts[0]
     assert_equal @guilherme, posts[1]
@@ -66,9 +75,6 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal @caelum, posts[0]
     assert_equal 1, posts.size
 
-    posts = Post.where(:comments).description.like?("%dsl test%")
-    assert_equal @caelum, posts[0]
-    assert_equal 1, posts.size
   end
 
   test "exists posts using strict extended methods" do
