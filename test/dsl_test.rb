@@ -21,8 +21,9 @@ class DSLTest < ActiveSupport::TestCase
   end
   
   # test "given an attribute and constraint expectation, gives the results" do
-  #   posts = Post.where(:body).length.lesser_than(22).all
+  #   posts = Post.where { body < 22 }
   #   assert_equal @guilherme, posts[0]
+  #   assert_equal 1, posts.size
   # end
   
   test "exists posts with comments" do
@@ -101,8 +102,6 @@ class DSLTest < ActiveSupport::TestCase
     # posts = Post.where { comments.description.like?("%dsl test%") }
 
      # posts = posts.and(:authors).count.lt(3)
-     # r = Post.where(:body).size.gt(2)
-     # r = Post.where(:comments).description.like("%a%")
      # r = Post.where(:comments).name.gt(2)
      # Author.where(:posts).comments.count.gt(2)
    end
