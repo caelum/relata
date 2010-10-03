@@ -96,13 +96,9 @@ class DSLTest < ActiveSupport::TestCase
   end
 
   def pending
-    
     # support .all, .first, and so on
-    
     # posts = Post.where { comments.description.like?("%dsl test%") }
-
-     # posts = posts.and(:authors).count.lt(3)
-     # r = Post.where(:comments).name.gt(2)
-     # Author.where(:posts).comments.count.gt(2)
+    # posts = posts.and(:authors).count.lt(3)
+    # Author.where(:posts).comments.count.gt(2)
    end
 end

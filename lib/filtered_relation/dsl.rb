@@ -3,11 +3,13 @@ require 'filtered_relation/dsl/constraints'
 require 'filtered_relation/dsl/querys/multiple'
 require 'filtered_relation/dsl/querys/simple'
 
+# in case you did not require the entire filtered_relation plugin
 module FilteredRelation
   module Dsl
   end
 end
 
+# defines helper methods to deal with custom relation
 module FilteredRelation::Dsl::CustomRelation
   include Conditions
   include Constraints
@@ -41,6 +43,7 @@ module FilteredRelation::Dsl::CustomRelation
 
 end
 
+# a relation search in a specific field
 class FilteredRelation::Dsl::FieldSearch
   
   def initialize(rel, field)
@@ -66,6 +69,7 @@ class FilteredRelation::Dsl::FieldSearch
 
 end
 
+# a builder ready to collect which field you want to search
 class FilteredRelation::Dsl::MissedBuilder
   
   def initialize(rel)
@@ -73,8 +77,8 @@ class FilteredRelation::Dsl::MissedBuilder
   end
   
   def method_missing(field, *args)
-    if args.size!=0
-      raise "Trying to setup a parameter with args: #{field} and #{args}"
+    if args.size != 0
+      raise "Unable to setup a parameter with args: #{field} and #{args}"
     end
     FilteredRelation::Dsl::FieldSearch.new(@rel, field)
   end
@@ -83,7 +87,14 @@ end
 
 module FilteredRelation::Dsl::Relation
 
-  # extended where clause that allows symbol lookup
+  # extended where clause that allows symbol and custom dsl lookup
+  #
+  # examples:
+  # where(:body).like?("%guilherme%")
+  # where { body.like?("%guilherme%")
+  #
+  # While the last will delegate to the MissedBuilder component
+  # the symbol based query will delegate query builder to CustomRelation.
   def where(*args, &block)
     if args.size==0 && block
       FilteredRelation::Dsl::MissedBuilder.new(self).instance_eval(&block)
