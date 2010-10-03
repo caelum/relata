@@ -24,11 +24,6 @@ module Conditions
   def lesser_than(value)
     lt value
   end
-  
-  def between(first, second)
-    puts "invoking with #{first} and #{second}"
-    add_filter("> #{first}").add_filter("< #{second}")
-  end
 
   # whether this relation has at least one element.
   def exists?

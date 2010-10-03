@@ -45,7 +45,6 @@ class FilteredRelation::Dsl::FieldSearch
   
   def initialize(rel, field)
     @rel = rel
-    puts "building a query on top of #{field}"
     @field = field
   end
 
@@ -54,7 +53,6 @@ class FilteredRelation::Dsl::FieldSearch
   end
   
   def like?(value)
-    puts "ha #{@field}"
     @rel.where(@field).like?(value)
   end
   
@@ -63,8 +61,7 @@ class FilteredRelation::Dsl::FieldSearch
   end
   
   def between(first, second)
-    puts "playing with #{@field}"
-    @rel.where(@field).between(first, second)
+    @rel.where("#{@field} > ? and #{@field} < ?", first, second)
   end
 
 end

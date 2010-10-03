@@ -8,4 +8,5 @@ module SimpleQuery
     base = @relation_search.condition(@current_field.to_s, expectation)
     where("#{base} #{expectation}")
   end
+  
 end

@@ -90,8 +90,6 @@ class DSLTest < ActiveSupport::TestCase
     @caelum.update_attributes :published_at => 1.year.ago
     
     posts = Post.where { published_at.between(2.years.ago, 6.months.ago) }
-    puts "Result is"
-    puts posts
     assert_equal @caelum, posts[0]
     assert_equal 1, posts.size
   end

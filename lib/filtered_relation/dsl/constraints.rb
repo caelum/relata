@@ -22,12 +22,12 @@ module Constraints
     query.where("#{@current_field} like ?", [value])
   end
   
-  def between(first, second)
-    @relation_search = SimpleRangeCondition
-    self
-    # query.where("#{@current_field} like ?", [value])
-    # add_filter("> #{first}").add_filter("< #{second}")
-  end
+  # def between(first, second)
+  #   @relation_search = SimpleRangeCondition
+  #   self
+  #   # query.where("#{@current_field} like ?", [value])
+  #   # add_filter("> #{first}").add_filter("< #{second}")
+  # end
   
   class SimpleCondition
     def self.condition(field, *args)
