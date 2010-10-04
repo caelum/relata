@@ -34,3 +34,10 @@ Create more advanced relations.
 	Post.where(:comments).count.lt(2)
 
  	Post.where(:comments).description.like?("%filtered%")
+
+ 	Post.where(:comments).subject.like?("%filtered%")
+
+	Post.where { comments >= 2 }
+	
+	Post.where { published_at.between(2.years.ago, 6.months.ago) }
+    
