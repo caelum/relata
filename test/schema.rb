@@ -24,6 +24,7 @@ def setup_db
       end
       
       create_table :comments do |t|
+        t.text :subject
         t.text :description
         t.integer :post_id
         t.timestamps

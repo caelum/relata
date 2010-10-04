@@ -60,6 +60,14 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal @base, posts[0]
     assert_equal 1, posts.size
   end
+
+  test "all post which commits has some subject" do
+    comment = Comment.create :subject => "dsl subject"
+    @base.update_attributes :comments => [comment]
+    posts = Post.where(:comments).subject.like?("%dsl subject%")
+    assert_equal @base, posts[0]
+    assert_equal 1, posts.size
+  end
   
   
   def pending
