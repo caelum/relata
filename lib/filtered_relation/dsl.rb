@@ -2,6 +2,7 @@ require 'filtered_relation/dsl/conditions'
 require 'filtered_relation/dsl/constraints'
 require 'filtered_relation/dsl/querys/multiple'
 require 'filtered_relation/dsl/querys/simple'
+require 'filtered_relation/dsl/querys/fields'
 
 # in case you did not require the entire filtered_relation plugin
 module FilteredRelation
@@ -20,18 +21,13 @@ module FilteredRelation::Dsl::CustomRelation
     @start_field = field
     @select_fields = ["#{table_name}.*"]
     @groups = []
-    
     if relates_to_many?
       self.extend MultipleQuery
+      self.extend ModelFields      
     else
       self.extend SimpleQuery
     end
     
-    self
-  end
-    
-  def description
-    @current_field = "#{@current_field}.description"
     self
   end
 
