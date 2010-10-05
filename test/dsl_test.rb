@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__)) + "/test_helper"
 require 'schema'
-require 'filtered_relation/dsl'
+require 'relata/dsl'
 
 class DSLTest < ActiveSupport::TestCase
   
