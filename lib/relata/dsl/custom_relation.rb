@@ -1,7 +1,7 @@
 # defines helper methods to deal with custom relation
 module Relata::Dsl::CustomRelation
-  include Conditions
-  include Constraints
+  include Relata::Dsl::Conditions
+  include Relata::Dsl::Constraints
   
   def using(record, field)    
     @record = record
