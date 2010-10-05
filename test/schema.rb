@@ -29,6 +29,13 @@ def setup_db
         t.integer :post_id
         t.timestamps
       end
+
+      create_table :readers do |t|
+        t.text :name
+        t.integer :post_id
+        t.timestamps
+      end
+
       
   end
 end
@@ -36,6 +43,7 @@ end
 class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments
+  has_many :readers
 end
 
 class User < ActiveRecord::Base
@@ -43,6 +51,10 @@ class User < ActiveRecord::Base
 end
 
 class Comment < ActiveRecord::Base
+  belongs_to :post
+end
+
+class Reader < ActiveRecord::Base
   belongs_to :post
 end
 

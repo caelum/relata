@@ -1,13 +1,14 @@
 module ModelFields
   
   def self.extended(base)
-    
+
+    @fields = []    
     base.reflect_on_all_associations.each do |r|
-      @fields = r.klass.columns.map do |c|
-        c.name if [:string, :text].include? c.type
+      r.klass.columns.each do |c|
+        @fields << c.name if [:string, :text].include? c.type
       end  
     end  
-    
+
     @fields.each do |field|
       include_method field if field != nil
     end  

@@ -21,6 +21,7 @@ module Relata::Dsl::CustomRelation
     @start_field = field
     @select_fields = ["#{table_name}.*"]
     @groups = []
+    
     if relates_to_many?
       self.extend MultipleQuery
       self.extend ModelFields      
@@ -95,7 +96,7 @@ class Relata::Dsl::MissedBuilder
       raise "Unable to setup a parameter with args: #{field} and #{args}"
     end
     relation = @rel.scoped
-    relation.extend FilteredRelation::Dsl::CustomRelation
+    relation.extend Relata::Dsl::CustomRelation
     relation.using(@rel, field)
     Relata::Dsl::FieldSearch.new(relation, field)
   end
