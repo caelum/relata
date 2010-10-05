@@ -1,6 +1,11 @@
 # A custom set of conditions that can be applied
 # to a query
 module Conditions
+
+  def eq(value)
+    add_filter("= #{value}")
+  end
+
   def ge(value)
     add_filter(">= #{value}")
   end
@@ -15,6 +20,10 @@ module Conditions
 
   def greater_than(value)
     gt(value)
+  end
+
+  def le(value)
+    add_filter("<= #{value}")
   end
 
   def lt(value)

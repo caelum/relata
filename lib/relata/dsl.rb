@@ -47,8 +47,24 @@ class Relata::Dsl::FieldSearch
     @field = field
   end
 
+  def ==(value)
+    @rel.where(@field).count.eq(value)
+  end
+
   def >=(value)
     @rel.where(@field).count.ge(value)
+  end
+  
+  def <=(value)
+    @rel.where(@field).count.le(value)
+  end
+  
+  def >(value)
+    @rel.where(@field).count.gt(value)
+  end
+  
+  def >(value)
+    @rel.where(@field).count.lt(value)
   end
   
   def like?(value)
