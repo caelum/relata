@@ -20,6 +20,7 @@ def setup_db
       end
 
       create_table :users do |t|
+        t.string :name
         t.timestamps
       end
       

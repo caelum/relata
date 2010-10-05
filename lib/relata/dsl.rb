@@ -12,6 +12,7 @@ require 'relata/dsl/missed_builder'
 require 'relata/dsl/querys/multiple'
 require 'relata/dsl/querys/simple'
 require 'relata/dsl/querys/fields'
+require 'relata/dsl/querys/belongs'
 
 module Relata::Dsl::Relation
 
