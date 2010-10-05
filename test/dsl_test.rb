@@ -62,10 +62,18 @@ class DSLTest < ActiveSupport::TestCase
     @caelum.update_attributes(:comments => [Comment.create, Comment.create]) 
     @guilherme.update_attributes(:comments => [Comment.create, Comment.create, Comment.create])
 
-    posts = Post.where(:comments).count.ge(2)
+    posts = Post.where(:comments).count.ge(2).all
+    assert_equal 2, posts.size
     assert_equal @caelum, posts[0]
     assert_equal @guilherme, posts[1]
-    assert_equal 2, posts.size
+  end
+   
+  test "dsl query supports first" do
+    @caelum.update_attributes(:comments => [Comment.create, Comment.create]) 
+    @guilherme.update_attributes(:comments => [Comment.create, Comment.create, Comment.create])
+
+    posts = Post.where(:comments).count.ge(2).first
+    assert_equal @caelum, posts
   end
    
   test "all post which commits has some description" do
@@ -83,8 +91,15 @@ class DSLTest < ActiveSupport::TestCase
     @guilherme.update_attributes(:comments => [Comment.create, Comment.create, Comment.create])
     posts = Post.where { comments >= 2 }
     assert_equal @caelum, posts[0]
-    assert_equal @guilherme, posts[1]
     assert_equal 2, posts.size
+    assert_equal @guilherme, posts[1]
+  end
+
+  test "strict block supports first" do
+    @caelum.update_attributes(:comments => [Comment.create, Comment.create]) 
+    @guilherme.update_attributes(:comments => [Comment.create, Comment.create, Comment.create])
+    post = Post.where { comments >= 2 }.first
+    assert_equal @caelum, post
   end
 
   test "exists posts using range expectations" do
@@ -115,10 +130,14 @@ class DSLTest < ActiveSupport::TestCase
   # end
 
   # def pending
-    # support .all, .first, and so on
     # posts = Post.where { comments.description.like?("%dsl test%") }
     # posts = posts.and(:authors).count.lt(3)
     # Author.where(:posts).comments.count.gt(2)
+    
+    # support all >=, <= etc
+    # support range to numbers
+    # support string length
+    
    # end
 
 end
