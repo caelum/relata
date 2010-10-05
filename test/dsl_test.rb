@@ -181,6 +181,5 @@ class DSLTest < ActiveSupport::TestCase
   # end
 
     # Author.where(:posts).comments.count.gt(2)
-    # support string length
     
 end
