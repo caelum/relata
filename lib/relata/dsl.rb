@@ -1,14 +1,15 @@
-require 'relata/dsl/conditions'
-require 'relata/dsl/constraints'
-require 'relata/dsl/querys/multiple'
-require 'relata/dsl/querys/simple'
-require 'relata/dsl/querys/fields'
-
 # in case you did not require the entire relata plugin
 module Relata
   module Dsl
   end
 end
+
+require 'relata/dsl/conditions'
+require 'relata/dsl/constraints'
+require 'relata/dsl/field_search'
+require 'relata/dsl/querys/multiple'
+require 'relata/dsl/querys/simple'
+require 'relata/dsl/querys/fields'
 
 # defines helper methods to deal with custom relation
 module Relata::Dsl::CustomRelation
@@ -33,78 +34,6 @@ module Relata::Dsl::CustomRelation
 
   def relates_to_many?
     @record.reflect_on_association @current_field.to_sym
-  end
-
-end
-
-# a relation search in a specific field
-class Relata::Dsl::FieldSearch
-  
-  def initialize(rel, field)
-    @rel = rel
-    @field = field
-  end
-
-  def ==(value)
-    if @rel.relates_to_many?
-      @rel.where(@field).count.eq(value)
-    else
-      @rel.where("#{@field} == ?", value)
-    end
-  end
-
-  def >=(value)
-    if @rel.relates_to_many?
-      @rel.where(@field).count.ge(value)
-    else
-      @rel.where("#{@field} >= ?", value)
-    end
-  end
-  
-  def <=(value)
-    if @rel.relates_to_many?
-      @rel.where(@field).count.le(value)
-    else
-      @rel.where("#{@field} <= ?", value)
-    end
-  end
-  
-  def >(value)
-    if @rel.relates_to_many?
-      @rel.where(@field).count.gt(value)
-    else
-      @rel.where("#{@field} > ?", value)
-    end
-  end
-  
-  def <(value)
-    if @rel.relates_to_many?
-      @rel.where(@field).count.lt(value)
-    else
-      @rel.where("#{@field} < ?", value)
-    end
-  end
-  
-  def like?(value)
-    @rel.where(@field).like?(value)
-  end
-  
-  def exists?
-    @rel.where(@field).exists?
-  end
-  
-  def between(first, second)
-    @rel.where("#{@field} > ? and #{@field} < ?", first, second)
-  end
-  
-  def length
-    @field = "length(#{@field})"
-    self
-  end
-  
-  def custom(*args)
-    comparison = args.shift
-    @rel.where("#{@field} #{comparison}", args)
   end
 
 end
