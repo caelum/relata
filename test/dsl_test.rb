@@ -118,7 +118,7 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal 1, posts.size
   end
   
-  test "accepts two conditions" do
+  test "accepts two conditions inline" do
     @caelum.update_attributes :published_at => 1.year.ago
     @guilherme.update_attributes :published_at => 1.year.ago
     
@@ -129,6 +129,15 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal @caelum, posts[0]
     assert_equal 1, posts.size
   end
+
+  test "supports two conditions in dsl mixing everything together" do
+    @caelum.update_attributes(:comments => [Comment.create, Comment.create]) 
+    @guilherme.update_attributes(:comments => [Comment.create, Comment.create, Comment.create])
+    posts = Post.where { comments >= 1 }.where(:body).like?("%lum%")
+    assert_equal @caelum, posts[0]
+    assert_equal 1, posts.size
+  end
+
 
   # def pending
     # posts = Post.where { comments.description.like?("%dsl test%") }
