@@ -54,19 +54,35 @@ class Relata::Dsl::FieldSearch
   end
 
   def >=(value)
-    @rel.where(@field).count.ge(value)
+    if @rel.relates_to_many?
+      @rel.where(@field).count.ge(value)
+    else
+      @rel.where("#{@field} >= ?", value)
+    end
   end
   
   def <=(value)
-    @rel.where(@field).count.le(value)
+    if @rel.relates_to_many?
+      @rel.where(@field).count.le(value)
+    else
+      @rel.where("#{@field} <= ?", value)
+    end
   end
   
   def >(value)
-    @rel.where(@field).count.gt(value)
+    if @rel.relates_to_many?
+      @rel.where(@field).count.gt(value)
+    else
+      @rel.where("#{@field} > ?", value)
+    end
   end
   
-  def >(value)
-    @rel.where(@field).count.lt(value)
+  def <(value)
+    if @rel.relates_to_many?
+      @rel.where(@field).count.lt(value)
+    else
+      @rel.where("#{@field} < ?", value)
+    end
   end
   
   def like?(value)
@@ -79,6 +95,11 @@ class Relata::Dsl::FieldSearch
   
   def between(first, second)
     @rel.where("#{@field} > ? and #{@field} < ?", first, second)
+  end
+  
+  def length
+    @field = "length(#{@field})"
+    self
   end
   
   def custom(*args)

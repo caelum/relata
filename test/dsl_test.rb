@@ -20,11 +20,11 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal 1, posts.size
   end
   
-  # test "given an attribute and constraint expectation, gives the results" do
-  #   posts = Post.where { body < 22 }
-  #   assert_equal @guilherme, posts[0]
-  #   assert_equal 1, posts.size
-  # end
+  test "given an attribute and constraint expectation, gives the results" do
+    posts = Post.where { body.length < 22 }
+    assert_equal @guilherme, posts[0]
+    assert_equal 1, posts.size
+  end
   
   test "exists posts with comments" do
     @caelum.update_attributes(:comments => [Comment.create]) 
@@ -170,7 +170,16 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal 1, posts.size
   end
 
-    # posts = Post.where { comments.description.like?("%dsl test%") }
+  # test "second level relation in a dsl" do
+  #   comment = Comment.create :description => "dsl test"
+  #   @caelum.update_attributes :comments => [comment]
+  # 
+  #   posts = Post.where{ comments.description.like?("%dsl test%") }
+  #   assert_equal @caelum, posts[0]
+  #   assert_equal 1, posts.size
+  # 
+  # end
+
     # Author.where(:posts).comments.count.gt(2)
     # support string length
     
