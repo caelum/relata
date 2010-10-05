@@ -22,6 +22,10 @@ module Relata::Dsl::Constraints
     query.where("#{@current_field} like ?", [value])
   end
   
+  def is_blank
+    query.where("#{@current_field} is NULL")
+  end
+  
   # def between(first, second)
   #   @relation_search = SimpleRangeCondition
   #   self

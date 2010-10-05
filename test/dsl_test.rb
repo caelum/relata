@@ -158,6 +158,14 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal 1, posts.size
   end
 
+  test "give records with nil fields" do
+    @caelum.update_attributes :body => nil
+    posts = Post.where(:body).is_null
+    assert_equal @caelum, posts[0]
+    assert_equal 1, posts.size
+  end
+
+
   # test "second level relation in a dsl" do
   #   comment = Comment.create :description => "dsl test"
   #   @caelum.update_attributes :comments => [comment]
