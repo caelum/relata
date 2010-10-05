@@ -51,6 +51,18 @@ class FilteredRelation::Dsl::FieldSearch
     @rel.where(@field).count.ge(value)
   end
   
+  def <=(value)
+    @rel.where(@field).count.le(value)
+  end
+  
+  def >(value)
+    @rel.where(@field).count.gt(value)
+  end
+  
+  def >(value)
+    @rel.where(@field).count.lt(value)
+  end
+  
   def like?(value)
     @rel.where(@field).like?(value)
   end

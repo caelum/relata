@@ -17,6 +17,10 @@ module Conditions
     gt(value)
   end
 
+  def le(value)
+    add_filter("<= #{value}")
+  end
+
   def lt(value)
     add_filter("< #{value}")
   end
