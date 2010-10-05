@@ -7,51 +7,27 @@ class Relata::Dsl::FieldSearch
   end
 
   def ==(value)
-    if @rel.relates_to_many?
-      @rel.where(@field).count.eq(value)
-    else
-      @rel.where("#{@field} == ?", value)
-    end
+    @rel.where("#{@field} == ?", value)
   end
 
   def >=(value)
-    if @rel.relates_to_many?
-      @rel.where(@field).count.ge(value)
-    else
-      @rel.where("#{@field} >= ?", value)
-    end
+    @rel.where("#{@field} >= ?", value)
   end
   
   def <=(value)
-    if @rel.relates_to_many?
-      @rel.where(@field).count.le(value)
-    else
-      @rel.where("#{@field} <= ?", value)
-    end
+    @rel.where("#{@field} <= ?", value)
   end
   
   def >(value)
-    if @rel.relates_to_many?
-      @rel.where(@field).count.gt(value)
-    else
-      @rel.where("#{@field} > ?", value)
-    end
+    @rel.where("#{@field} > ?", value)
   end
   
   def <(value)
-    if @rel.relates_to_many?
-      @rel.where(@field).count.lt(value)
-    else
-      @rel.where("#{@field} < ?", value)
-    end
+    @rel.where("#{@field} < ?", value)
   end
   
   def like?(value)
     @rel.where(@field).like?(value)
-  end
-  
-  def exists?
-    @rel.where(@field).exists?
   end
   
   def between(first, second)
@@ -61,6 +37,44 @@ class Relata::Dsl::FieldSearch
   def length
     @field = "length(#{@field})"
     self
+  end
+  
+  def custom(*args)
+    comparison = args.shift
+    @rel.where("#{@field} #{comparison}", args)
+  end
+
+end
+
+class Relata::Dsl::FieldSearchMany
+  
+  def initialize(rel, field)
+    @rel = rel
+    @field = field
+  end
+
+  def ==(value)
+    @rel.where(@field).count.eq(value)
+  end
+
+  def >=(value)
+    @rel.where(@field).count.ge(value)
+  end
+  
+  def <=(value)
+    @rel.where(@field).count.le(value)
+  end
+  
+  def >(value)
+    @rel.where(@field).count.gt(value)
+  end
+  
+  def <(value)
+    @rel.where(@field).count.lt(value)
+  end
+  
+  def exists?
+    @rel.where(@field).exists?
   end
   
   def custom(*args)

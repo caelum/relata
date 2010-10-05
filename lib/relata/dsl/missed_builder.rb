@@ -9,11 +9,20 @@ class Relata::Dsl::MissedBuilder
     relation = @rel.scoped
     relation.extend Relata::Dsl::CustomRelation
     relation.using(@rel, field)
-    if args.size != 0
-      Relata::Dsl::FieldSearch.new(relation, field).custom(*args)
+    
+    if relation.relates_to_many?
+      type = Relata::Dsl::FieldSearchMany
     else
-      Relata::Dsl::FieldSearch.new(relation, field)
+      type = Relata::Dsl::FieldSearch
     end
+    
+    instance = type.new(relation, field)
+    
+    if args.size != 0
+      instance = instance.custom(*args)
+    end
+    
+    instance
   end
   
 end
