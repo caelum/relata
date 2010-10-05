@@ -17,7 +17,7 @@ end
 desc 'Generate documentation for the filtered_relation plugin.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'FilteredRelation'
+  rdoc.title    = 'Relata'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
@@ -28,13 +28,13 @@ end
 PKG_FILES = FileList[ '[a-zA-Z]*', 'generators/**/*', 'lib/**/*', 'rails/**/*', 'tasks/**/*', 'test/**/*' ] 
 
 spec = Gem::Specification.new do |s|
-   s.name = "filtered_relation"  
+   s.name = "Relata"  
    s.version = "0.0.2"  
-   s.author = "Anderson Leite"  
-   s.email = "andersonlfl@gmail.com"  
+   s.author = "Anderson Leite, Guilherme Silveira"  
+   s.email = "anderson.leite@caelum.com.br"  
    s.homepage = "http://github.com/andersonleite/filtered_relation"  
    s.platform = Gem::Platform::RUBY 
-   s.summary = "Making dynamic filters easier with a nice ActiveRecord DSL."  
+   s.summary = "Helps poking around with relationships when using ARel"
    s.files = PKG_FILES.to_a 
    s.require_path = "lib"  
    s.has_rdoc = false 
@@ -44,4 +44,4 @@ end
 desc 'Turn this plugin into a gem.' 
 Rake::GemPackageTask.new(spec) do |pkg| 
   pkg.gem_spec = spec 
-end 
+end
