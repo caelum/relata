@@ -1,17 +1,17 @@
-require 'filtered_relation/dsl/conditions'
-require 'filtered_relation/dsl/constraints'
-require 'filtered_relation/dsl/querys/multiple'
-require 'filtered_relation/dsl/querys/simple'
-require 'filtered_relation/dsl/querys/fields'
+require 'relata/dsl/conditions'
+require 'relata/dsl/constraints'
+require 'relata/dsl/querys/multiple'
+require 'relata/dsl/querys/simple'
+require 'relata/dsl/querys/fields'
 
-# in case you did not require the entire filtered_relation plugin
-module FilteredRelation
+# in case you did not require the entire relata plugin
+module Relata
   module Dsl
   end
 end
 
 # defines helper methods to deal with custom relation
-module FilteredRelation::Dsl::CustomRelation
+module Relata::Dsl::CustomRelation
   include Conditions
   include Constraints
   
@@ -40,7 +40,7 @@ module FilteredRelation::Dsl::CustomRelation
 end
 
 # a relation search in a specific field
-class FilteredRelation::Dsl::FieldSearch
+class Relata::Dsl::FieldSearch
   
   def initialize(rel, field)
     @rel = rel
@@ -66,7 +66,7 @@ class FilteredRelation::Dsl::FieldSearch
 end
 
 # a builder ready to collect which field you want to search
-class FilteredRelation::Dsl::MissedBuilder
+class Relata::Dsl::MissedBuilder
   
   def initialize(rel)
     @rel = rel
@@ -76,12 +76,12 @@ class FilteredRelation::Dsl::MissedBuilder
     if args.size != 0
       raise "Unable to setup a parameter with args: #{field} and #{args}"
     end
-    FilteredRelation::Dsl::FieldSearch.new(@rel, field)
+    Relata::Dsl::FieldSearch.new(@rel, field)
   end
   
 end
 
-module FilteredRelation::Dsl::Relation
+module Relata::Dsl::Relation
 
   # extended where clause that allows symbol and custom dsl lookup
   #
@@ -93,10 +93,10 @@ module FilteredRelation::Dsl::Relation
   # the symbol based query will delegate query builder to CustomRelation.
   def where(*args, &block)
     if args.size==0 && block
-      FilteredRelation::Dsl::MissedBuilder.new(self).instance_eval(&block)
+      Relata::Dsl::MissedBuilder.new(self).instance_eval(&block)
     elsif args.size==1 && args[0].is_a?(Symbol)
       relation = scoped
-      relation.extend FilteredRelation::Dsl::CustomRelation
+      relation.extend Relata::Dsl::CustomRelation
       relation.using(self, args[0])
     else
       super(*args, &block)
@@ -105,5 +105,5 @@ module FilteredRelation::Dsl::Relation
 end
 
 class ActiveRecord::Relation
-  include FilteredRelation::Dsl::Relation
+  include Relata::Dsl::Relation
 end
