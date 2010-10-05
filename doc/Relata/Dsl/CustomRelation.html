@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Module: Relata::Dsl::CustomRelation</title>
+
+	<link rel="stylesheet" href="../../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="module">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../../index.html">Home</a>
+          <a href="../../index.html#classes">Classes</a>
+          <a href="../../index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../../lib/relata/dsl/custom_relation_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/relata/dsl/custom_relation.rb">lib/relata/dsl/custom_relation.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-i-relates_belongs_to%3F">#relates_belongs_to?</a></li>
+					
+					<li><a href="#method-i-relates_to_many%3F">#relates_to_many?</a></li>
+					
+					<li><a href="#method-i-using">#using</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+			<div id="includes-section" class="section">
+				<h3 class="section-header">Included Modules</h3>
+				<ul class="link-list">
+				
+				
+					<li><a class="include" href="Conditions.html">Relata::Dsl::Conditions</a></li>
+				
+				
+				
+					<li><a class="include" href="Constraints.html">Relata::Dsl::Constraints</a></li>
+				
+				
+				</ul>
+			</div>
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../../Gemfile.html">Gemfile</a></li>
+				
+					<li class="file"><a href="../../MIT-LICENSE.html">MIT-LICENSE</a></li>
+				
+					<li class="file"><a href="../../Rakefile.html">Rakefile</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../../Relata.html">Relata</a></li>
+				
+					<li><a href="../../Relata/Dsl.html">Relata::Dsl</a></li>
+				
+					<li><a href="../../Relata/Dsl/Conditions.html">Relata::Dsl::Conditions</a></li>
+				
+					<li><a href="../../Relata/Dsl/Constraints.html">Relata::Dsl::Constraints</a></li>
+				
+					<li><a href="../../Relata/Dsl/Constraints/CountManager.html">Relata::Dsl::Constraints::CountManager</a></li>
+				
+					<li><a href="../../Relata/Dsl/Constraints/LengthManager.html">Relata::Dsl::Constraints::LengthManager</a></li>
+				
+					<li><a href="../../Relata/Dsl/Constraints/RangeManager.html">Relata::Dsl::Constraints::RangeManager</a></li>
+				
+					<li><a href="../../Relata/Dsl/Constraints/SimpleCondition.html">Relata::Dsl::Constraints::SimpleCondition</a></li>
+				
+					<li><a href="../../Relata/Dsl/Constraints/SimpleRangeCondition.html">Relata::Dsl::Constraints::SimpleRangeCondition</a></li>
+				
+					<li><a href="../../Relata/Dsl/CustomRelation.html">Relata::Dsl::CustomRelation</a></li>
+				
+					<li><a href="../../Relata/Dsl/FieldSearch.html">Relata::Dsl::FieldSearch</a></li>
+				
+					<li><a href="../../Relata/Dsl/FieldSearchMany.html">Relata::Dsl::FieldSearchMany</a></li>
+				
+					<li><a href="../../Relata/Dsl/MissedBuilder.html">Relata::Dsl::MissedBuilder</a></li>
+				
+					<li><a href="../../Relata/Dsl/Relation.html">Relata::Dsl::Relation</a></li>
+				
+					<li><a href="../../ActiveRecord.html">ActiveRecord</a></li>
+				
+					<li><a href="../../ActiveRecord/Relation.html">ActiveRecord::Relation</a></li>
+				
+					<li><a href="../../RelatedQueryMethods.html">RelatedQueryMethods</a></li>
+				
+					<li><a href="../../RelatedQueryMethods/ClassMethods.html">RelatedQueryMethods::ClassMethods</a></li>
+				
+					<li><a href="../../BelongsToQuery.html">BelongsToQuery</a></li>
+				
+					<li><a href="../../Comment.html">Comment</a></li>
+				
+					<li><a href="../../DSLTest.html">DSLTest</a></li>
+				
+					<li><a href="../../FilteredRelationTest.html">FilteredRelationTest</a></li>
+				
+					<li><a href="../../ModelFields.html">ModelFields</a></li>
+				
+					<li><a href="../../MultipleQuery.html">MultipleQuery</a></li>
+				
+					<li><a href="../../Object.html">Object</a></li>
+				
+					<li><a href="../../Post.html">Post</a></li>
+				
+					<li><a href="../../Reader.html">Reader</a></li>
+				
+					<li><a href="../../SimpleQuery.html">SimpleQuery</a></li>
+				
+					<li><a href="../../User.html">User</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="module">Relata::Dsl::CustomRelation</h1>
+
+		<div id="description">
+			<p>
+defines helper methods to deal with custom relation
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="relates-belongs-to--method" class="method-detail ">
+				<a name="method-i-relates_belongs_to%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">relates_belongs_to?</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="relates-belongs-to--source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/relata/dsl/custom_relation.rb, line 35</span>
+35:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">relates_belongs_to?</span>
+36:     <span class="ruby-ivar">@record</span>.<span class="ruby-identifier">reflect_on_all_associations</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+37:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_sym</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-ivar">@current_field</span>.<span class="ruby-identifier">to_sym</span> 
+38:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">macro</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-value str">&quot;belongs_to&quot;</span>
+39:       <span class="ruby-keyword kw">end</span>  
+40:     <span class="ruby-keyword kw">end</span>  
+41:     <span class="ruby-keyword kw">false</span>
+42:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="relates-to-many--method" class="method-detail ">
+				<a name="method-i-relates_to_many%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">relates_to_many?</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="relates-to-many--source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/relata/dsl/custom_relation.rb, line 26</span>
+26:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">relates_to_many?</span>
+27:     <span class="ruby-ivar">@record</span>.<span class="ruby-identifier">reflect_on_all_associations</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+28:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_sym</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-ivar">@current_field</span>.<span class="ruby-identifier">to_sym</span> 
+29:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">macro</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-value str">&quot;has_many&quot;</span>
+30:       <span class="ruby-keyword kw">end</span>  
+31:     <span class="ruby-keyword kw">end</span>  
+32:     <span class="ruby-keyword kw">false</span>
+33:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="using-method" class="method-detail ">
+				<a name="method-i-using"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">using</span><span
+						class="method-args">(record, field)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="using-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/relata/dsl/custom_relation.rb, line 6</span>
+ 6:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">using</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">field</span>)    
+ 7:     <span class="ruby-ivar">@record</span> = <span class="ruby-identifier">record</span>
+ 8:     <span class="ruby-ivar">@current_field</span> = <span class="ruby-identifier">field</span>
+ 9:     <span class="ruby-ivar">@start_field</span> = <span class="ruby-identifier">field</span>
+10:     <span class="ruby-ivar">@select_fields</span> = [<span class="ruby-node">&quot;#{table_name}.*&quot;</span>]
+11:     <span class="ruby-ivar">@groups</span> = []
+12:     
+13:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">relates_to_many?</span>
+14:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">MultipleQuery</span>
+15:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">ModelFields</span>      
+16:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">relates_belongs_to?</span>
+17:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">BelongsToQuery</span>
+18:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">ModelFields</span>            
+19:     <span class="ruby-keyword kw">else</span>
+20:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">SimpleQuery</span>
+21:     <span class="ruby-keyword kw">end</span>
+22:     
+23:     <span class="ruby-keyword kw">self</span>
+24:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

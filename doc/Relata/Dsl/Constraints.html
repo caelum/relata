@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Module: Relata::Dsl::Constraints</title>
+
+	<link rel="stylesheet" href="../../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="module">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../../index.html">Home</a>
+          <a href="../../index.html#classes">Classes</a>
+          <a href="../../index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../../lib/relata/dsl/constraints_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/relata/dsl/constraints.rb">lib/relata/dsl/constraints.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+
+			<!-- Namespace Contents -->
+			
+			<div id="namespace-list-section" class="section">
+				<h3 class="section-header">Namespace</h3>
+				<ul class="link-list">
+					
+					<li><span class="type">CLASS</span> <a href="Constraints/CountManager.html">Relata::Dsl::Constraints::CountManager</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="Constraints/LengthManager.html">Relata::Dsl::Constraints::LengthManager</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="Constraints/RangeManager.html">Relata::Dsl::Constraints::RangeManager</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="Constraints/SimpleCondition.html">Relata::Dsl::Constraints::SimpleCondition</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="Constraints/SimpleRangeCondition.html">Relata::Dsl::Constraints::SimpleRangeCondition</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-i-count">#count</a></li>
+					
+					<li><a href="#method-i-is_null">#is_null</a></li>
+					
+					<li><a href="#method-i-length">#length</a></li>
+					
+					<li><a href="#method-i-like%3F">#like?</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../../Gemfile.html">Gemfile</a></li>
+				
+					<li class="file"><a href="../../MIT-LICENSE.html">MIT-LICENSE</a></li>
+				
+					<li class="file"><a href="../../Rakefile.html">Rakefile</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../../Relata.html">Relata</a></li>
+				
+					<li><a href="../../Relata/Dsl.html">Relata::Dsl</a></li>
+				
+					<li><a href="../../Relata/Dsl/Conditions.html">Relata::Dsl::Conditions</a></li>
+				
+					<li><a href="../../Relata/Dsl/Constraints.html">Relata::Dsl::Constraints</a></li>
+				
+					<li><a href="../../Relata/Dsl/Constraints/CountManager.html">Relata::Dsl::Constraints::CountManager</a></li>
+				
+					<li><a href="../../Relata/Dsl/Constraints/LengthManager.html">Relata::Dsl::Constraints::LengthManager</a></li>
+				
+					<li><a href="../../Relata/Dsl/Constraints/RangeManager.html">Relata::Dsl::Constraints::RangeManager</a></li>
+				
+					<li><a href="../../Relata/Dsl/Constraints/SimpleCondition.html">Relata::Dsl::Constraints::SimpleCondition</a></li>
+				
+					<li><a href="../../Relata/Dsl/Constraints/SimpleRangeCondition.html">Relata::Dsl::Constraints::SimpleRangeCondition</a></li>
+				
+					<li><a href="../../Relata/Dsl/CustomRelation.html">Relata::Dsl::CustomRelation</a></li>
+				
+					<li><a href="../../Relata/Dsl/FieldSearch.html">Relata::Dsl::FieldSearch</a></li>
+				
+					<li><a href="../../Relata/Dsl/FieldSearchMany.html">Relata::Dsl::FieldSearchMany</a></li>
+				
+					<li><a href="../../Relata/Dsl/MissedBuilder.html">Relata::Dsl::MissedBuilder</a></li>
+				
+					<li><a href="../../Relata/Dsl/Relation.html">Relata::Dsl::Relation</a></li>
+				
+					<li><a href="../../ActiveRecord.html">ActiveRecord</a></li>
+				
+					<li><a href="../../ActiveRecord/Relation.html">ActiveRecord::Relation</a></li>
+				
+					<li><a href="../../RelatedQueryMethods.html">RelatedQueryMethods</a></li>
+				
+					<li><a href="../../RelatedQueryMethods/ClassMethods.html">RelatedQueryMethods::ClassMethods</a></li>
+				
+					<li><a href="../../BelongsToQuery.html">BelongsToQuery</a></li>
+				
+					<li><a href="../../Comment.html">Comment</a></li>
+				
+					<li><a href="../../DSLTest.html">DSLTest</a></li>
+				
+					<li><a href="../../FilteredRelationTest.html">FilteredRelationTest</a></li>
+				
+					<li><a href="../../ModelFields.html">ModelFields</a></li>
+				
+					<li><a href="../../MultipleQuery.html">MultipleQuery</a></li>
+				
+					<li><a href="../../Object.html">Object</a></li>
+				
+					<li><a href="../../Post.html">Post</a></li>
+				
+					<li><a href="../../Reader.html">Reader</a></li>
+				
+					<li><a href="../../SimpleQuery.html">SimpleQuery</a></li>
+				
+					<li><a href="../../User.html">User</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="module">Relata::Dsl::Constraints</h1>
+
+		<div id="description">
+			<h1><a href="Constraints.html">Constraints</a></h1>
+<p>
+A custom set of constraints that can be applied to a query
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="count-method" class="method-detail ">
+				<a name="method-i-count"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">count</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="count-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/relata/dsl/constraints.rb, line 13</span>
+13:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">count</span>
+14:     <span class="ruby-ivar">@select_fields</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;COUNT(#{@current_field}.id) AS count&quot;</span>
+15:     <span class="ruby-ivar">@groups</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{table_name}.id&quot;</span>
+16:     <span class="ruby-ivar">@relation_search</span> = <span class="ruby-value str">'count'</span>
+17:     <span class="ruby-keyword kw">self</span>
+18:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="is-null-method" class="method-detail ">
+				<a name="method-i-is_null"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">is_null</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return all objects whith nil value fields
+</p>
+<pre>
+ Post.where(:body).is_null</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="is-null-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/relata/dsl/constraints.rb, line 28</span>
+28:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_null</span>
+29:     <span class="ruby-identifier">query</span>.<span class="ruby-identifier">where</span>(<span class="ruby-node">&quot;#{@current_field} is NULL&quot;</span>)
+30:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="length-method" class="method-detail ">
+				<a name="method-i-length"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">length</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return all objects which fields by size
+</p>
+<pre>
+ Post.where { body.length &lt; 22 }</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="length-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/relata/dsl/constraints.rb, line 8</span>
+ 8:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">length</span>
+ 9:     <span class="ruby-ivar">@relation_search</span> = <span class="ruby-constant">LengthManager</span>
+10:     <span class="ruby-keyword kw">self</span>
+11:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="like--method" class="method-detail ">
+				<a name="method-i-like%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">like?</span><span
+						class="method-args">(value)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return all objects which match with parameter
+</p>
+<pre>
+ Post.where(:body).like?(&quot;%caelum%&quot;)</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="like--source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/relata/dsl/constraints.rb, line 22</span>
+22:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">like?</span>(<span class="ruby-identifier">value</span>)
+23:     <span class="ruby-identifier">query</span>.<span class="ruby-identifier">where</span>(<span class="ruby-node">&quot;#{@current_field} like ?&quot;</span>, [<span class="ruby-identifier">value</span>])
+24:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

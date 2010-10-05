@@ -1,3 +1,4 @@
+# = Field Search
 # a relation search in a specific field
 class Relata::Dsl::FieldSearch
   
@@ -6,43 +7,64 @@ class Relata::Dsl::FieldSearch
     @field = field
   end
 
+  # Exactly number of relation or field value
+  #  Post.where { body == "CaelumObjects training and inovation" }
+  #  Post.where { comments == 2 }
   def ==(value)
     @rel.where("#{@field} == ?", value)
   end
 
+  # All records with different field value
+  #  Post.where { comments == 2 }
   def !=(value)
     @rel.where("#{@field} <> ?", value)
   end
 
+  # All records with higher or equal number of relations
+  #  Post.where { comments >= 2 }
   def >=(value)
     @rel.where("#{@field} >= ?", value)
   end
   
+  # All records with less or equal number of relations
+  #  Post.where { comments <= 2 }  
   def <=(value)
     @rel.where("#{@field} <= ?", value)
   end
-  
+
+  # All records with higher number of relations
+  #  Post.where { comments > 2 }    
   def >(value)
     @rel.where("#{@field} > ?", value)
   end
-  
+
+  # All records with lesser number of relations
+  #  Post.where { comments < 2 }      
   def <(value)
     @rel.where("#{@field} < ?", value)
   end
   
+  # Find records by field value
+  #  Post.where(:body).like?("%caelum%")    
   def like?(value)
     @rel.where(@field).like?(value)
   end
   
+  # Find record with date between 
+  #  Post.where { published_at.between(2.years.ago, 6.months.ago) }
   def between(first, second)
     @rel.where("#{@field} > ? and #{@field} < ?", first, second)
   end
-  
+
+  # Find records by size
+  #  Post.where { body.length < 22 }  
   def length
     @field = "length(#{@field})"
     self
   end
-  
+
+  # Your custom relation
+  #  Post.where { body "like ?", "%lum%" }
   def custom(*args)
     comparison = args.shift
     @rel.where("#{@field} #{comparison}", args)

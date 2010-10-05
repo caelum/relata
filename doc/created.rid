@@ -1,0 +1,25 @@
+Tue, 05 Oct 2010 20:57:34 -0300
+./Gemfile	Mon, 04 Oct 2010 22:16:37 -0300
+./init.rb	Tue, 05 Oct 2010 14:11:26 -0300
+./install.rb	Mon, 04 Oct 2010 22:16:37 -0300
+./lib/relata/dsl/conditions.rb	Tue, 05 Oct 2010 20:44:34 -0300
+./lib/relata/dsl/constraints.rb	Tue, 05 Oct 2010 20:44:34 -0300
+./lib/relata/dsl/custom_relation.rb	Tue, 05 Oct 2010 18:35:14 -0300
+./lib/relata/dsl/field_search.rb	Tue, 05 Oct 2010 20:53:55 -0300
+./lib/relata/dsl/missed_builder.rb	Tue, 05 Oct 2010 14:11:26 -0300
+./lib/relata/dsl/querys/belongs.rb	Tue, 05 Oct 2010 18:35:14 -0300
+./lib/relata/dsl/querys/fields.rb	Tue, 05 Oct 2010 18:35:14 -0300
+./lib/relata/dsl/querys/multiple.rb	Tue, 05 Oct 2010 14:11:26 -0300
+./lib/relata/dsl/querys/simple.rb	Tue, 05 Oct 2010 14:11:26 -0300
+./lib/relata/dsl.rb	Tue, 05 Oct 2010 18:35:14 -0300
+./lib/relata/filter.rb	Tue, 05 Oct 2010 20:57:18 -0300
+./lib/relata/related_query_methods.rb	Tue, 05 Oct 2010 14:11:26 -0300
+./lib/relata.rb	Tue, 05 Oct 2010 14:11:26 -0300
+./MIT-LICENSE	Mon, 04 Oct 2010 22:16:37 -0300
+./Rakefile	Mon, 04 Oct 2010 22:27:47 -0300
+./test/dsl_test.rb	Tue, 05 Oct 2010 20:13:50 -0300
+./test/filtered_relation_test.rb	Tue, 05 Oct 2010 18:15:17 -0300
+./test/relation_dsl_test.rb	Tue, 05 Oct 2010 19:49:37 -0300
+./test/schema.rb	Tue, 05 Oct 2010 19:49:37 -0300
+./test/test_helper.rb	Mon, 04 Oct 2010 22:16:37 -0300
+./uninstall.rb	Mon, 04 Oct 2010 22:16:37 -0300
