@@ -80,6 +80,11 @@ class Relata::Dsl::FieldSearch
   def between(first, second)
     @rel.where("#{@field} > ? and #{@field} < ?", first, second)
   end
+  
+  def custom(*args)
+    comparison = args.shift
+    @rel.where("#{@field} #{comparison}", args)
+  end
 
 end
 
@@ -92,12 +97,16 @@ class Relata::Dsl::MissedBuilder
   
   def method_missing(field, *args)
     if args.size != 0
-      raise "Unable to setup a parameter with args: #{field} and #{args}"
+      relation = @rel.scoped
+      relation.extend Relata::Dsl::CustomRelation
+      relation.using(@rel, field)
+      Relata::Dsl::FieldSearch.new(relation, field).custom(*args)
+    else
+      relation = @rel.scoped
+      relation.extend Relata::Dsl::CustomRelation
+      relation.using(@rel, field)
+      Relata::Dsl::FieldSearch.new(relation, field)
     end
-    relation = @rel.scoped
-    relation.extend Relata::Dsl::CustomRelation
-    relation.using(@rel, field)
-    Relata::Dsl::FieldSearch.new(relation, field)
   end
   
 end

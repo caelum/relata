@@ -156,21 +156,22 @@ class DSLTest < ActiveSupport::TestCase
     @caelum.update_attributes :published_at => 1.year.ago
     @guilherme.update_attributes :published_at => 1.year.ago
     
-    posts = Post.where { 
-      published_at.between(2.years.ago, 6.months.ago)
-    }
+    posts = Post.where { published_at.between(2.years.ago, 6.months.ago) }
+    assert_equal @caelum, posts[0]
     assert_equal 2, posts.size
-    posts = posts.where { 
-      body.like?("%lum%")
-    }
-    assert_equal 2, posts.size
+    posts = posts.where { body.like?("%lum%") }
+    assert_equal @caelum, posts[0]
+    assert_equal 1, posts.size
   end
 
+  test "accepts any custom condition" do
+    posts = Post.where { body "like ?", "%lum%" }
+    assert_equal @caelum, posts[0]
+    assert_equal 1, posts.size
+  end
 
     # posts = Post.where { comments.description.like?("%dsl test%") }
-    # posts = posts.and(:authors).count.lt(3)
     # Author.where(:posts).comments.count.gt(2)
-    # support range to numbers
     # support string length
     
 end
