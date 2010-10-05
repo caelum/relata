@@ -20,11 +20,11 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal 1, posts.size
   end
   
-  # test "given an attribute and constraint expectation, gives the results" do
-  #   posts = Post.where { body < 22 }
-  #   assert_equal @guilherme, posts[0]
-  #   assert_equal 1, posts.size
-  # end
+  test "given an attribute and constraint expectation, gives the results" do
+    posts = Post.where { body.length < 22 }
+    assert_equal @guilherme, posts[0]
+    assert_equal 1, posts.size
+  end
   
   test "exists posts with comments" do
     @caelum.update_attributes(:comments => [Comment.create]) 
@@ -134,10 +134,34 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal 1, posts.size
   end
 
-    # posts = Post.where { comments.description.like?("%dsl test%") }
-    # posts = posts.and(:authors).count.lt(3)
+  test "accepts two conditions one after the other" do
+    @caelum.update_attributes :published_at => 1.year.ago
+    @guilherme.update_attributes :published_at => 1.year.ago
+    
+    posts = Post.where { published_at.between(2.years.ago, 6.months.ago) }
+    assert_equal @caelum, posts[0]
+    assert_equal 2, posts.size
+    posts = posts.where { body.like?("%lum%") }
+    assert_equal @caelum, posts[0]
+    assert_equal 1, posts.size
+  end
+
+  test "accepts any custom condition" do
+    posts = Post.where { body "like ?", "%lum%" }
+    assert_equal @caelum, posts[0]
+    assert_equal 1, posts.size
+  end
+
+  # test "second level relation in a dsl" do
+  #   comment = Comment.create :description => "dsl test"
+  #   @caelum.update_attributes :comments => [comment]
+  # 
+  #   posts = Post.where{ comments.description.like?("%dsl test%") }
+  #   assert_equal @caelum, posts[0]
+  #   assert_equal 1, posts.size
+  # 
+  # end
+
     # Author.where(:posts).comments.count.gt(2)
-    # support range to numbers
-    # support string length
     
 end

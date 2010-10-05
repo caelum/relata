@@ -1,6 +1,6 @@
 # A custom set of conditions that can be applied
 # to a query
-module Conditions
+module Relata::Dsl::Conditions
 
   def eq(value)
     add_filter("= #{value}")

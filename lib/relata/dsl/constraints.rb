@@ -1,4 +1,4 @@
-module Constraints
+module Relata::Dsl::Constraints
   
   def length
     @relation_search = LengthManager

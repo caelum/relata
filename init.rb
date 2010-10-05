@@ -4,4 +4,4 @@ require 'ruby-debug'
 require 'active_record'
 require "active_support"
 
-require "filtered_relation"
+require "relata"
