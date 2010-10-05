@@ -31,8 +31,6 @@ module FilteredRelation::Dsl::CustomRelation
     self
   end
 
-  private
-  
   def relates_to_many?
     @record.reflect_on_association @current_field.to_sym
   end
@@ -48,7 +46,11 @@ class FilteredRelation::Dsl::FieldSearch
   end
 
   def ==(value)
-    @rel.where(@field).count.eq(value)
+    if @rel.relates_to_many?
+      @rel.where(@field).count.eq(value)
+    else
+      @rel.where("#{@field} == ?", value)
+    end
   end
 
   def >=(value)
@@ -92,7 +94,10 @@ class FilteredRelation::Dsl::MissedBuilder
     if args.size != 0
       raise "Unable to setup a parameter with args: #{field} and #{args}"
     end
-    FilteredRelation::Dsl::FieldSearch.new(@rel, field)
+    relation = @rel.scoped
+    relation.extend FilteredRelation::Dsl::CustomRelation
+    relation.using(@rel, field)
+    FilteredRelation::Dsl::FieldSearch.new(relation, field)
   end
   
 end

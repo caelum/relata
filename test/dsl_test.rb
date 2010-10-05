@@ -138,23 +138,24 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal 1, posts.size
   end
 
-  test "supports ==" do
+  test "supports == with relation count" do
     @caelum.update_attributes(:comments => [Comment.create, Comment.create]) 
     posts = Post.where { comments == 2 }
     assert_equal @caelum, posts[0]
     assert_equal 1, posts.size
   end
 
+  test "supports == with simple field" do
+    @caelum.update_attributes(:comments => [Comment.create, Comment.create]) 
+    posts = Post.where { body == "CaelumObjects training and inovation" }
+    assert_equal @caelum, posts[0]
+    assert_equal 1, posts.size
+  end
 
-
-  # def pending
     # posts = Post.where { comments.description.like?("%dsl test%") }
     # posts = posts.and(:authors).count.lt(3)
     # Author.where(:posts).comments.count.gt(2)
-    
     # support range to numbers
     # support string length
     
-   # end
-
 end
