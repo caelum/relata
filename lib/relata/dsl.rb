@@ -95,7 +95,7 @@ class Relata::Dsl::MissedBuilder
       raise "Unable to setup a parameter with args: #{field} and #{args}"
     end
     relation = @rel.scoped
-    relation.extend FilteredRelation::Dsl::CustomRelation
+    relation.extend Relata::Dsl::CustomRelation
     relation.using(@rel, field)
     Relata::Dsl::FieldSearch.new(relation, field)
   end
