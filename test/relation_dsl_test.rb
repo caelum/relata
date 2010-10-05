@@ -28,14 +28,14 @@ class DSLTest < ActiveSupport::TestCase
    
     end
   
-  # test "all post which commits has some subject and another has_many relation" do
-  #   reader = Reader.create :subject => "anderson"
-  #   comment = Comment.create :subject => "dsl subject"
-  #   @caelum.update_attributes :comments => [comment], :readers => [reader]
-  #   posts = Post.where(:comments).subject.like?("%dsl subject%")
-  #   assert_equal @caelum, posts[0]
-  #   assert_equal 1, posts.size
-  # end
+#  test "all post which commits has some subject and another has_many relation" do
+#    reader = Reader.create :subject => "anderson"
+#    comment = Comment.create :subject => "dsl subject"
+#    @caelum.update_attributes :comments => [comment], :readers => [reader]
+#    posts = Post.where(:comments).subject.like?("%dsl subject%")
+#    assert_equal @caelum, posts[0]
+#    assert_equal 1, posts.size
+#  end
   
   
   
