@@ -1,6 +1,11 @@
 # A custom set of conditions that can be applied
 # to a query
 module Conditions
+
+  def eq(value)
+    add_filter("= #{value}")
+  end
+
   def ge(value)
     add_filter(">= #{value}")
   end

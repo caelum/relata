@@ -47,6 +47,10 @@ class FilteredRelation::Dsl::FieldSearch
     @field = field
   end
 
+  def ==(value)
+    @rel.where(@field).count.eq(value)
+  end
+
   def >=(value)
     @rel.where(@field).count.ge(value)
   end
