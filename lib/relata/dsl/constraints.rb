@@ -1,16 +1,15 @@
+# = Constraints
+# A custom set of constraints that can be applied
+# to a query
 module Relata::Dsl::Constraints
   
+  # Return all objects which fields by size
+  #  Post.where { body.length < 22 }
   def length
     @relation_search = LengthManager
     self
   end
   
-  class LengthManager
-    def self.condition(field, *args)
-      "len(field)"
-    end
-  end
-
   def count
     @select_fields << "COUNT(#{@current_field}.id) AS count"
     @groups << "#{table_name}.id"
@@ -18,11 +17,15 @@ module Relata::Dsl::Constraints
     self
   end
 
+  # Return all objects which match with parameter
+  #  Post.where(:body).like?("%caelum%")
   def like?(value)
     query.where("#{@current_field} like ?", [value])
   end
-  
-  def is_blank
+ 
+  # Return all objects whith nil value fields
+  #  Post.where(:body).is_null
+  def is_null
     query.where("#{@current_field} is NULL")
   end
   
@@ -32,6 +35,12 @@ module Relata::Dsl::Constraints
   #   # query.where("#{@current_field} like ?", [value])
   #   # add_filter("> #{first}").add_filter("< #{second}")
   # end
+  
+  class LengthManager
+    def self.condition(field, *args)
+      "len(field)"
+    end
+  end
   
   class SimpleCondition
     def self.condition(field, *args)
