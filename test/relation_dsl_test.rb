@@ -37,12 +37,21 @@ class DSLTest < ActiveSupport::TestCase
       assert_equal 1, posts.size
     end
 
-    test "exists posts for a specific reader name" do
+    test "exists posts for a specific user name" do
       user = User.create :name => "anderson"
       @caelum.update_attributes(:user => user) 
       posts = Post.where(:user).name.like?("anderson")
       assert_equal @caelum, posts[0]
       assert_equal 1, posts.size
     end
+
+    test "exists posts for a specific user title" do
+      user = User.create :title => "programmer"
+      @caelum.update_attributes(:user => user) 
+      posts = Post.where(:user).title.like?("programmer")
+      assert_equal @caelum, posts[0]
+      assert_equal 1, posts.size
+    end
+
 
 end  

@@ -21,6 +21,7 @@ def setup_db
 
       create_table :users do |t|
         t.string :name
+        t.text :title        
         t.timestamps
       end
       
