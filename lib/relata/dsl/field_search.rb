@@ -10,6 +10,10 @@ class Relata::Dsl::FieldSearch
     @rel.where("#{@field} == ?", value)
   end
 
+  def !=(value)
+    @rel.where("#{@field} <> ?", value)
+  end
+
   def >=(value)
     @rel.where("#{@field} >= ?", value)
   end

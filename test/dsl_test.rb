@@ -128,10 +128,16 @@ class DSLTest < ActiveSupport::TestCase
   end
   
   test "supports == with simple field" do
-    @caelum.update_attributes(:comments => [Comment.create, Comment.create]) 
     posts = Post.where { body == "CaelumObjects training and inovation" }
     assert_equal @caelum, posts[0]
     assert_equal 1, posts.size
+  end
+
+  test "supports != with simple field" do
+    posts = Post.where { body != "diff" }
+    assert_equal @caelum, posts[0]
+    assert_equal @guilherme, posts[1]    
+    assert_equal 2, posts.size
   end
 
   test "accepts two conditions one after the other" do
