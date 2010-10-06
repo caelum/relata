@@ -23,19 +23,21 @@ module Relata::Dsl::CustomRelation
     self
   end
 
+
+
   def relates_to_many?
-    @record.reflect_on_all_associations.each do |r|
-      if r.name.to_sym.eql? @current_field.to_sym 
-        return true if r.macro.to_s.eql? "has_many"
-      end  
-    end  
-    false
+    check_relation "has_many"
   end
   
   def relates_belongs_to?
+    check_relation "belongs_to"
+  end
+  
+  private
+  def check_relation type
     @record.reflect_on_all_associations.each do |r|
       if r.name.to_sym.eql? @current_field.to_sym 
-        return true if r.macro.to_s.eql? "belongs_to"
+        return true if r.macro.to_s.eql? type
       end  
     end  
     false
