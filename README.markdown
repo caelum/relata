@@ -1,27 +1,10 @@
-#FilteredRelation#
+#Relata#
 
-Making dynamic filters easier with a nice ActiveRecord DSL. 
+Helps poking around with relationships when using ARel. 
 
-## Filter Example ##
+## Install ##
 
-Create dynamic filters with just onde method.
-	
-	<% form_tag :action => 'filter' do %>
-	  	Title: <%= text_field_tag 'post[title]' %><br />
-	  	Only with Comments? 
-	        <%= select("post", "comments",   options_for_select({ "false" => "", "true" => "true" })) %> %>
-
-	def filter
-	  @posts = Post.filtered_relation(params[:post]).all
-	end
-
-Create more advanced relations.
-	
-	posts = Post.filtered_relation(:comments => true).where(:user_id => 4).limit(3).order("id ASC")    
-
-	posts.each do |post|  
-		# records
-	end  
+	gem install relata
 
 ## DSL API ##
 
@@ -40,4 +23,29 @@ Create more advanced relations.
 	Post.where { comments >= 2 }
 	
 	Post.where { published_at.between(2.years.ago, 6.months.ago) }
+	
+	Post.where(:user).name.like?("anderson")
+	
+	Post.where(:comments).description.like?("%dsl test%")
+
     
+## Filter Example ##
+
+Create dynamic filters with just onde method.
+
+	<% form_tag :action => 'filter' do %>
+	  	Title: <%= text_field_tag 'post[title]' %><br />
+	  	Only with Comments? 
+	        <%= select("post", "comments",   options_for_select({ "false" => "", "true" => "true" })) %> %>
+
+	def filter
+	  @posts = Post.filtered_relation(params[:post]).all
+	end
+
+Create more advanced relations.
+
+	posts = Post.filtered_relation(:comments => true).where(:user_id => 4).limit(3).order("id ASC")    
+
+	posts.each do |post|  
+		# records
+	end  
