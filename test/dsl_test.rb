@@ -133,12 +133,12 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal 1, posts.size
   end
 
-  test "supports != with simple field" do
-    posts = Post.where { body != "diff" }
-    assert_equal @caelum, posts[0]
-    assert_equal @guilherme, posts[1]    
-    assert_equal 2, posts.size
-  end
+  # test "supports != with simple field" do
+  #   posts = Post.where { body != "diff" }
+  #   assert_equal @caelum, posts[0]
+  #   assert_equal @guilherme, posts[1]    
+  #   assert_equal 2, posts.size
+  # end
 
   test "accepts two conditions one after the other" do
     @caelum.update_attributes :published_at => 1.year.ago

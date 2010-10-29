@@ -15,10 +15,10 @@ class Relata::Dsl::FieldSearch
   end
 
   # All records with different field value
-  #  Post.where { comments == 2 }
-  def !=(value)
-    @rel.where("#{@field} <> ?", value)
-  end
+  #  Post.where { comments != 2 }
+  # def !=(value)
+  #   @rel.where("#{@field} <> ?", value)
+  # end
 
   # All records with higher or equal number of relations
   #  Post.where { comments >= 2 }
