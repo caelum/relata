@@ -26,6 +26,12 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal 1, posts.size
   end
   
+  test "given an attribute and between expectation, gives the results" do
+    posts = Post.where { body.length.between(10,20) }
+    assert_equal @guilherme, posts[0]
+    assert_equal 1, posts.size
+  end
+  
   test "exists posts with comments" do
     @caelum.update_attributes(:comments => [Comment.create]) 
     posts = Post.where(:comments).count.exists?
