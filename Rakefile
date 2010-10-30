@@ -26,7 +26,7 @@ end
 PKG_FILES = FileList[ '[a-zA-Z]*', 'generators/**/*', 'lib/**/*', 'rails/**/*', 'tasks/**/*', 'test/**/*' ] 
 
 spec = Gem::Specification.new do |s|
-   s.name = "Relata"  
+   s.name = "relata"  
    s.version = "0.0.4"  
    s.author = "Anderson Leite, Guilherme Silveira, Pedro Mariano"  
    s.email = "anderson.leite@caelum.com.br"  
