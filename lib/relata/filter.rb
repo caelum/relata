@@ -1,4 +1,4 @@
-require 'filtered_relation/related_query_methods'
+require 'relata/related_query_methods'
 ActiveRecord::Base.send :include, RelatedQueryMethods
 
 
